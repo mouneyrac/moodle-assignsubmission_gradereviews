@@ -108,7 +108,7 @@ function assignsubmission_gradereviews_comment_permissions(stdClass $options) {
  * @throws comment_exception
  */
 function assignsubmission_gradereviews_comment_display($gradereviews, $options) {
-    global $CFG, $DB, $USER;
+    global $CFG, $DB, $USER, $COURSE;
 
     if ($options->commentarea != 'submission_gradereviews' &&
         $options->commentarea != 'submission_gradereviews_upgrade') {
@@ -157,6 +157,17 @@ function assignsubmission_gradereviews_comment_display($gradereviews, $options) 
             $gradereview->fullname = $usermappings[$gradereview->userid]->fullname;
             $gradereview->avatar = $usermappings[$gradereview->userid]->avatar;
             $gradereview->profileurl = null;
+        }
+    }
+
+    // Do not display delete option if the user is not the creator.
+    foreach ($gradereviews as &$gradereview) {
+        if ($gradereview->userid != $USER->id) {
+            // Check if the user is manager
+            if (!has_capability('moodle/site:caneditreviewgrade', context_user::instance($USER->id)) &&
+                !has_capability('moodle/site:caneditreviewgrade', context_course::instance($COURSE->id))) {
+                $gradereview->delete = 0;
+            }
         }
     }
 

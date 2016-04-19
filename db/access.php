@@ -32,6 +32,13 @@ $capabilities = array(
             'manager' => CAP_ALLOW,
             'editingteacher' => CAP_ALLOW
         )
+    ),
+    'moodle/site:caneditreviewgrade' => array(
+        'captype' => 'write',
+        'contextlevel' => CONTEXT_USER,
+        'archetypes' => array(
+            'manager' => CAP_ALLOW
+        )
     )
 
 );
