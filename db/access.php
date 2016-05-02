@@ -22,10 +22,8 @@
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-
 $capabilities = array(
-
-     'moodle/site:canreviewgrade' => array(
+    'moodle/site:canreviewgrade' => array(
         'captype' => 'write',
         'contextlevel' => CONTEXT_USER,
         'archetypes' => array(
@@ -40,5 +38,4 @@ $capabilities = array(
             'manager' => CAP_ALLOW
         )
     )
-
 );

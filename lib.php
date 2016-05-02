@@ -37,7 +37,7 @@ function assignsubmission_gradereviews_comment_validate(stdClass $options) {
             $options->commentarea != 'submission_gradereviews_upgrade') {
         throw new comment_exception('invalidcommentarea');
     }
-    if (!$submission = $DB->get_record('assign_submission', array('id'=>$options->itemid))) {
+    if (!$submission = $DB->get_record('assign_submission', array('id' => $options->itemid))) {
         throw new comment_exception('invalidgradereviewitemid');
     }
     $context = $options->context;
@@ -74,7 +74,7 @@ function assignsubmission_gradereviews_comment_permissions(stdClass $options) {
             $options->commentarea != 'submission_gradereviews_upgrade') {
         throw new comment_exception('invalidcommentarea');
     }
-    if (!$submission = $DB->get_record('assign_submission', array('id'=>$options->itemid))) {
+    if (!$submission = $DB->get_record('assign_submission', array('id' => $options->itemid))) {
         throw new comment_exception('invalidgradereviewitemid');
     }
     $context = $options->context;
@@ -114,7 +114,7 @@ function assignsubmission_gradereviews_comment_display($gradereviews, $options) 
         $options->commentarea != 'submission_gradereviews_upgrade') {
         throw new comment_exception('invalidcommentarea');
     }
-    if (!$submission = $DB->get_record('assign_submission', array('id'=>$options->itemid))) {
+    if (!$submission = $DB->get_record('assign_submission', array('id' => $options->itemid))) {
         throw new comment_exception('invalidgradereviewitemid');
     }
     $context = $options->context;
@@ -150,7 +150,7 @@ function assignsubmission_gradereviews_comment_display($gradereviews, $options) 
                 // Temporarily store blind-marking information for use in later gradereviews if necessary.
                 $usermappings[$gradereview->userid]->fullname = fullname($gradereviewer);
                 $usermappings[$gradereview->userid]->avatar = $assignment->get_renderer()->user_picture($gradereviewer,
-                        array('size'=>18, 'link' => false));
+                        array('size' => 18, 'link' => false));
             }
 
             // Set blind-marking information for this gradereview.
@@ -163,7 +163,7 @@ function assignsubmission_gradereviews_comment_display($gradereviews, $options) 
     // Do not display delete option if the user is not the creator.
     foreach ($gradereviews as &$gradereview) {
         if ($gradereview->userid != $USER->id) {
-            // Check if the user is manager
+            // Check if the user is manager.
             if (!has_capability('moodle/site:caneditreviewgrade', context_user::instance($USER->id)) &&
                 !has_capability('moodle/site:caneditreviewgrade', context_course::instance($COURSE->id))) {
                 $gradereview->delete = 0;
