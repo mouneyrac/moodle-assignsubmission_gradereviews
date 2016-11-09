@@ -33,7 +33,7 @@ defined('MOODLE_INTERNAL') || die();
  * @copyright  2013 Rajesh Taneja <rajesh@moodle.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class gradereview_created extends \core\event\gradereview_created {
+class gradereview_created extends \core\event\comment_created {
     /**
      * Get URL related to the action.
      *
