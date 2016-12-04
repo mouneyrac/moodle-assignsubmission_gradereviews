@@ -28,6 +28,8 @@
  * @return bool
  */
 function xmldb_assignsubmission_gradereviews_upgrade($oldversion) {
+    global $DB;
+
     // Moodle v2.3.0 release upgrade line.
     // Put any upgrade step following this.
 
@@ -48,6 +50,26 @@ function xmldb_assignsubmission_gradereviews_upgrade($oldversion) {
 
     // Moodle v2.9.0 release upgrade line.
     // Put any upgrade step following this.
+
+    $dbman = $DB->get_manager();
+
+    if ($oldversion < 2016042206) {
+
+        // Update all capability to new one.
+        $oldcap = $DB->get_record('capabilities', array('name' => 'moodle/site:canreviewgrade'));
+        $oldcap->name = 'assign/submission:canreviewgrade';
+        $oldcap->component = 'assignsubmission_gradereviews';
+        $DB->update_record('capabilities', $oldcap);
+
+        $oldcap = $DB->get_record('capabilities', array('name' => 'moodle/site:caneditreviewgrade'));
+        $oldcap->name = 'assign/submission:caneditreviewgrade';
+        $oldcap->component = 'assignsubmission_gradereviews';
+        $DB->update_record('capabilities', $oldcap);
+
+
+        // Assign submission savepoint reached.
+        upgrade_plugin_savepoint(true, 2016042206, 'assignsubmission', 'gradereviews');
+    }
 
     return true;
 }
