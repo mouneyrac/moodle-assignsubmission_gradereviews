@@ -164,8 +164,8 @@ function assignsubmission_gradereviews_comment_display($gradereviews, $options) 
     foreach ($gradereviews as &$gradereview) {
         if ($gradereview->userid != $USER->id) {
             // Check if the user is manager.
-            if (!has_capability('moodle/site:caneditreviewgrade', context_user::instance($USER->id)) &&
-                !has_capability('moodle/site:caneditreviewgrade', context_course::instance($COURSE->id))) {
+            if (!has_capability('assign/submission:caneditreviewgrade', context_user::instance($USER->id)) &&
+                !has_capability('assign/submission:caneditreviewgrade', context_course::instance($COURSE->id))) {
                 $gradereview->delete = 0;
             }
         }

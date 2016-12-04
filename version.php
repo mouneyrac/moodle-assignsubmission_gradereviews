@@ -24,7 +24,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->version   = 2016042200;
+$plugin->version   = 2016042201;
 $plugin->requires  = 2014111000;
 $plugin->component = 'assignsubmission_gradereviews';
 $plugin->maturity = MATURITY_STABLE;
