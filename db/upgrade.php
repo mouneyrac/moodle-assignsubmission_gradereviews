@@ -71,6 +71,29 @@ function xmldb_assignsubmission_gradereviews_upgrade($oldversion) {
         upgrade_plugin_savepoint(true, 2016042206, 'assignsubmission', 'gradereviews');
     }
 
+    if ($oldversion < 2016042207) {
+
+        // Update all role_capability to new one.
+        $oldcaps = $DB->get_records('role_capabilities', array('capability' => 'moodle/site:canreviewgrade'));
+        if (!empty($oldcaps)) {
+            foreach ($oldcaps as $oldcap) {
+                $oldcap->capability = 'assign/submission:canreviewgrade';
+                $DB->update_record('role_capabilities', $oldcap);
+            }
+        }
+
+        $oldeditcaps = $DB->get_records('role_capabilities', array('capability' => 'moodle/site:caneditreviewgrade'));
+        if (!empty($oldeditcaps)) {
+            foreach ($oldeditcaps as $oldcap) {
+                $oldcap->capability = 'assign/submission:caneditreviewgrade';
+                $DB->update_record('role_capabilities', $oldcap);
+            }
+        }
+
+        // Assign submission savepoint reached.
+        upgrade_plugin_savepoint(true, 2016042207, 'assignsubmission', 'gradereviews');
+    }
+
     return true;
 }
 
