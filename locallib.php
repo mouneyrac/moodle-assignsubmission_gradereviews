@@ -67,6 +67,7 @@ class assign_submission_gradereviews extends assign_submission_plugin {
         $options->component = 'assignsubmission_gradereviews';
         $options->showcount = true;
         $options->displaycancel = true;
+        $options->linktext = get_string('commentlinktext', 'assignsubmission_gradereviews');
 
         $gradereview = new comment($options);
         $gradereview->set_view_permission(true);
