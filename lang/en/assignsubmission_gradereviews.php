@@ -29,5 +29,6 @@ $string['enabled'] = 'Submission gradereviews';
 $string['enabled_help'] = 'If enabled, students can leave gradereviews on their own submission. This can be used to let students alert the marker about which files the master file is in cases of inter-linked files, for instance.
 ';
 $string['pluginname'] = 'Grade reviews';
+$string['privacy:metadata:commentpurpose'] = 'Records comments made against a submission';
 $string['assign/submission:caneditreviewgrade'] = 'Can delete review grade comments.';
 $string['assign/submission:canreviewgrade'] = 'Can review grade.';
